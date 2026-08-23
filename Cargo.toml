@@ -1,0 +1,28 @@
+[package]
+name = "voxelkloud-wasm-proj"
+version = "0.0.0"
+edition = "2021"
+description = "Coordinate reprojection for voxelkloud, compiled to wasm from proj4rs. No PROJ, no C toolchain, and an EPSG table small enough to ship."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# proj4rs: a Rust adaptation of proj4. The alternative is PROJ through
+# Emscripten, which is a C build, a 2 MB+ artefact and a filesystem shim for the
+# grid files. This is none of those.
+#
+# `multi-thread` is off: it pulls `lazy_static` for a shared datum cache that a
+# single-threaded worker has no use for. `crs-definitions` is the EPSG table —
+# without it nothing in a real file resolves, because files declare codes and
+# WKT, never proj strings.
+proj4rs = { version = "0.1.10", default-features = false, features = ["crs-definitions"] }
+
+wasm-bindgen = "=0.2.127"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
