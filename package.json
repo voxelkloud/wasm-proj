@@ -1,6 +1,6 @@
 {
   "name": "@voxelkloud/wasm-proj",
-  "version": "0.2.1",
+  "version": "0.5.0",
   "description": "Coordinate reprojection for voxelkloud, compiled to wasm from proj4rs: EPSG and proj4 systems, a measured affine placement for putting two clouds in one scene, and an exact per-point path.",
   "license": "MIT",
   "keywords": [
