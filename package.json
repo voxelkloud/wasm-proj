@@ -53,6 +53,6 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@voxelkloud/core": "workspace:*"
+    "@voxelkloud/core": "^0.5.0"
   }
 }
